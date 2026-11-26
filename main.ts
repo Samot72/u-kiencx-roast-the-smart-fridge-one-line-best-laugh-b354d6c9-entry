@@ -18,6 +18,12 @@ if (codePoints.length < 1 || codePoints.length > 160) {
 if (ENTRY.trim().length === 0) {
   throw new Error("entry must not be blank");
 }
+if (ENTRY !== ENTRY.trim()) {
+  throw new Error("entry must not have leading or trailing whitespace");
+}
+if (/\s{2,}/.test(ENTRY)) {
+  throw new Error("entry must not contain doubled whitespace");
+}
 if (/[\r\n]/.test(ENTRY)) {
   throw new Error("entry must be a single line");
 }
